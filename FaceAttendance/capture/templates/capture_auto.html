@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automatic Attendance Capture</title>
+    <script>
+        function captureImage() {
+            fetch('/capture_auto/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log(`Captured for student ID: ${data.student_id} at ${data.time}`);
+                    } else {
+                        console.log('Capture failed');
+                    }
+                });
+        }
+
+        setInterval(captureImage, 30000); // Capture every 30 seconds
+    </script>
+</head>
+<body>
+    <h1>Automatic Attendance Capture</h1>
+    <p>This page will automatically capture images every 30 seconds.</p>
+</body>
+</html>
